@@ -1,41 +1,33 @@
-<section class="phx-hero">
-  <h1><%= gettext "Welcome to %{name}!", name: "Phoenix" %></h1>
-  <p>Peace of mind from prototype to production</p>
-</section>
+<h1>Plants</h1>
 
-<section class="row">
-  <article class="column">
-    <h2>Resources</h2>
-    <ul>
-      <li>
-        <a href="https://hexdocs.pm/phoenix/overview.html">Guides &amp; Docs</a>
-      </li>
-      <li>
-        <a href="https://github.com/phoenixframework/phoenix">Source</a>
-      </li>
-      <li>
-        <a href="https://github.com/phoenixframework/phoenix/blob/v1.6/CHANGELOG.md">v1.6 Changelog</a>
-      </li>
-    </ul>
-  </article>
-  <article class="column">
-    <h2>Help</h2>
-    <ul>
-      <li>
-        <a href="https://elixirforum.com/c/phoenix-forum">Forum</a>
-      </li>
-      <li>
-        <a href="https://web.libera.chat/#elixir">#elixir on Libera Chat (IRC)</a>
-      </li>
-      <li>
-        <a href="https://twitter.com/elixirphoenix">Twitter @elixirphoenix</a>
-      </li>
-      <li>
-        <a href="https://elixir-slackin.herokuapp.com/">Elixir on Slack</a>
-      </li>
-      <li>
-        <a href="https://discord.gg/elixir">Elixir on Discord</a>
-      </li>
-    </ul>
-  </article>
-</section>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Frequency</th>
+      <th>Last watered</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for plant <- @plants do %>
+    <tr style={color(plant)}>
+      <td><%= plant.name %></td>
+      <td>Every <%= pretty_frequency(plant.frequency) %></td>
+      <td><%= pretty_days_since(plant.last_watered) %></td>
+
+      <td>
+        <span><%= link "Edit", to: Routes.plant_path(@conn, :edit, plant) %></span>
+        
+          <%= link to: Routes.plant_path(@conn, :water, plant), method: :post do %>
+            <%# <%= FontAwesome.icon("droplet", type: "solid", class: "h-4 w-4") %>
+            Water
+          <% end %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Plant", to: Routes.plant_path(@conn, :new) %></span>

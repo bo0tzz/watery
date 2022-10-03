@@ -33,6 +33,7 @@ defmodule Watery.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      # Framework dependencies
       {:phoenix, "~> 1.6.6"},
       {:phoenix_ecto, "~> 4.4"},
       {:ecto_sql, "~> 3.6"},
@@ -47,7 +48,11 @@ defmodule Watery.MixProject do
       {:telemetry_poller, "~> 1.0"},
       {:gettext, "~> 0.18"},
       {:jason, "~> 1.2"},
-      {:plug_cowboy, "~> 2.5"}
+      {:plug_cowboy, "~> 2.5"},
+      # Application dependencies
+      {:timex, "~> 3.7"},
+      # Web dependencies
+      {:ex_fontawesome, "~> 0.7.1"}
     ]
   end
 

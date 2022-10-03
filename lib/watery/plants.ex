@@ -21,6 +21,12 @@ defmodule Watery.Plants do
     Repo.all(Plant)
   end
 
+  def list_plants_ordered() do
+    Plant
+    |> order_by(asc_nulls_first: :last_watered)
+    |> Repo.all()
+  end
+
   @doc """
   Gets a single plant.
 

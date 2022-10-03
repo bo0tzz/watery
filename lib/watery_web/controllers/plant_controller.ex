@@ -56,7 +56,17 @@ defmodule WateryWeb.PlantController do
     {:ok, _plant} = Plants.delete_plant(plant)
 
     conn
-    |> put_flash(:info, "Plant deleted successfully.")
-    |> redirect(to: Routes.plant_path(conn, :index))
+    |> put_flash(:info, "#{plant.name} deleted successfully.")
+    |> redirect(to: Routes.page_path(conn, :index))
+  end
+
+  def water(conn, %{"id" => id}) do
+    {:ok, plant} =
+      Plants.get_plant!(id)
+      |> Plants.update_plant(%{last_watered: DateTime.utc_now()})
+
+    conn
+    |> put_flash(:info, "#{plant.name} has been watered.")
+    |> redirect(to: Routes.page_path(conn, :index))
   end
 end

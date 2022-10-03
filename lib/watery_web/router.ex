@@ -19,6 +19,7 @@ defmodule WateryWeb.Router do
 
     get "/", PageController, :index
     resources "/plants", PlantController
+    post "/plants/:id", PlantController, :water
   end
 
   # Other scopes may use custom stacks.
