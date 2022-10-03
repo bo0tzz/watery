@@ -20,4 +20,9 @@
   <div>
     <%= submit "Save" %>
   </div>
+  <%= if Map.has_key?(assigns, :plant) do %>
+    <span>
+      <%= link "Delete", to: Routes.plant_path(@conn, :delete, @plant), method: :delete, data: [confirm: "Are you sure?"] %>
+    </span>
+  <% end %>
 </.form>

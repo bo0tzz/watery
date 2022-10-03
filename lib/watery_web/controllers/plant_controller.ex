@@ -5,8 +5,8 @@ defmodule WateryWeb.PlantController do
   alias Watery.Plants.Plant
 
   def index(conn, _params) do
-    plants = Plants.list_plants()
-    render(conn, "index.html", plants: plants)
+    conn
+    |> redirect(to: Routes.page_path(conn, :index))
   end
 
   def new(conn, _params) do
@@ -18,17 +18,12 @@ defmodule WateryWeb.PlantController do
     case Plants.create_plant(plant_params) do
       {:ok, plant} ->
         conn
-        |> put_flash(:info, "Plant created successfully.")
-        |> redirect(to: Routes.plant_path(conn, :show, plant))
+        |> put_flash(:info, "#{plant.name} created successfully.")
+        |> redirect(to: Routes.page_path(conn, :index))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
-  end
-
-  def show(conn, %{"id" => id}) do
-    plant = Plants.get_plant!(id)
-    render(conn, "show.html", plant: plant)
   end
 
   def edit(conn, %{"id" => id}) do
@@ -43,8 +38,8 @@ defmodule WateryWeb.PlantController do
     case Plants.update_plant(plant, plant_params) do
       {:ok, plant} ->
         conn
-        |> put_flash(:info, "Plant updated successfully.")
-        |> redirect(to: Routes.plant_path(conn, :show, plant))
+        |> put_flash(:info, "#{plant.name} updated successfully.")
+        |> redirect(to: Routes.page_path(conn, :index))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", plant: plant, changeset: changeset)
