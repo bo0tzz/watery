@@ -1,11 +1,11 @@
-defmodule Watery.Plant do
+defmodule Watery.Plants.Plant do
   use Ecto.Schema
   import Ecto.Changeset
 
   schema "plants" do
-    field :name, :string
     field :frequency, :integer
     field :last_watered, :utc_datetime
+    field :name, :string
 
     timestamps()
   end
@@ -14,6 +14,6 @@ defmodule Watery.Plant do
   def changeset(plant, attrs) do
     plant
     |> cast(attrs, [:name, :frequency, :last_watered])
-    |> validate_required([:name, :frequency, :last_watered])
+    |> validate_required([:name, :frequency])
   end
 end

@@ -1,0 +1,23 @@
+<h1>Show Plant</h1>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @plant.name %>
+  </li>
+
+  <li>
+    <strong>Frequency:</strong>
+    <%= @plant.frequency %>
+  </li>
+
+  <li>
+    <strong>Last watered:</strong>
+    <%= @plant.last_watered %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.plant_path(@conn, :edit, @plant) %></span> |
+<span><%= link "Back", to: Routes.plant_path(@conn, :index) %></span>
