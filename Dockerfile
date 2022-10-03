@@ -47,8 +47,6 @@ COPY lib lib
 COPY priv priv
 COPY assets assets
 
-RUN npm ci --prefix ./assets --progress=false --no-audit --loglevel=error
-
 # compile assets
 RUN mix assets.deploy
 
