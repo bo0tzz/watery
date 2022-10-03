@@ -10,7 +10,7 @@ defmodule WateryWeb.PlantController do
   end
 
   def new(conn, _params) do
-    changeset = Plants.change_plant(%Plant{})
+    changeset = Plants.change_plant(%Plant{last_watered: DateTime.utc_now()})
     render(conn, "new.html", changeset: changeset)
   end
 
