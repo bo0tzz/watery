@@ -12,7 +12,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - uses: satackey/action-docker-layer-caching@v0.0.8
+    - uses: satackey/action-docker-layer-caching@v0.0.11
       continue-on-error: true
     - name: Push to GitHub Container Registry
       uses: docker/build-push-action@v3
