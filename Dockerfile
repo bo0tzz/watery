@@ -80,4 +80,4 @@ COPY --from=builder --chown=nobody:root /app/_build/prod/rel/watery ./
 
 USER nobody
 
-CMD ["/app/bin/server"]
+CMD ["sh", "-c", "/app/bin/migrate && /app/bin/server"]
