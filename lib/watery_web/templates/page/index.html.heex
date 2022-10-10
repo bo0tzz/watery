@@ -15,7 +15,7 @@
     <tr style={color(plant)}>
       <td><%= plant.name %></td>
       <td>Every <%= pretty_frequency(plant.frequency) %></td>
-      <td><%= pretty_days_since(plant.last_watered) %></td>
+      <td><%= pretty_days_since_watered(plant) %></td>
 
       <td>
         <span><%= link "Edit", to: Routes.plant_path(@conn, :edit, plant) %></span>
