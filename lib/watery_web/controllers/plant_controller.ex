@@ -56,6 +56,21 @@ defmodule WateryWeb.PlantController do
   end
 
   def water(conn, %{"id" => id}) do
+    case id do
+      "all" -> water_all(conn)
+      id -> water_plant(conn, id)
+    end
+  end
+
+  defp water_all(conn) do
+    Plants.water_all()
+
+    conn
+    |> put_flash(:info, "All plants have been watered.")
+    |> redirect(to: Routes.page_path(conn, :index))
+  end
+
+  defp water_plant(conn, id) do
     {:ok, plant} =
       Plants.get_plant!(id)
       |> Plants.update_plant(%{last_watered: DateTime.utc_now()})

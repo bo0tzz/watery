@@ -7,7 +7,7 @@
       <th>Frequency</th>
       <th>Last watered</th>
 
-      <th></th>
+      <th><%= link "Water all", to: Routes.plant_path(@conn, :water, :all), method: :post %></th>
     </tr>
   </thead>
   <tbody>

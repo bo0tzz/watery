@@ -107,4 +107,8 @@ defmodule Watery.Plants do
   def change_plant(%Plant{} = plant, attrs \\ %{}) do
     Plant.changeset(plant, attrs)
   end
+
+  def water_all() do
+    Repo.update_all(Plant, set: [last_watered: DateTime.utc_now()])
+  end
 end
